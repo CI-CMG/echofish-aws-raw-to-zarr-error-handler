@@ -65,7 +65,7 @@ public class RawToZarrErrorHandler {
         message.getFileName(),
         message.getCruiseName(),
         DynamoDBMapperConfig.TableNameOverride.withTableNameReplacement(configuration.getTableName()).config());
-    record.setPipelineStatus("FAILURE");
+    record.setPipelineStatus(FileInfoRecord.PipelineStatus.FAILURE);
     record.setErrorMessage(getErrorMessage(snsError));
     record.setErrorDetail(getErrorDetail(snsError));
     mapper.save(record, DynamoDBMapperConfig.TableNameOverride.withTableNameReplacement(configuration.getTableName()).config());
