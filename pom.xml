@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-    <project xmlns="http://maven.apache.org/POM/4.0.0"
-             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-             xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>io.github.ci-cmg.echofish</groupId>
@@ -31,7 +29,8 @@
         <connection>scm:git:git@github.com:CI-CMG/echofish-aws-raw-to-zarr-error-handler.git</connection>
         <developerConnection>scm:git:git@github.com:CI-CMG/echofish-aws-raw-to-zarr-error-handler.git</developerConnection>
         <url>https://github.com/CI-CMG/echofish-aws-raw-to-zarr-error-handler</url>
-    </scm>
+      <tag>1.0</tag>
+  </scm>
 
     <distributionManagement>
         <snapshotRepository>
@@ -390,22 +389,22 @@
                         <configuration>
                             <exportAntProperties>true</exportAntProperties>
                             <target>
-                                <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath"/>
-                                <var name="snapshot.list" value=""/>
-                                <loadfile property="resolved.dependencies" srcFile="target/dependencies.txt"/>
+                                <taskdef resource="net/sf/antcontrib/antlib.xml" classpathref="maven.plugin.classpath" />
+                                <var name="snapshot.list" value="" />
+                                <loadfile property="resolved.dependencies" srcFile="target/dependencies.txt" />
                                 <for param="line" list="${resolved.dependencies}" delimiter="${line.separator}">
                                     <sequential>
                                         <if>
-                                            <contains string="@{line}" substring="SNAPSHOT"/>
+                                            <contains string="@{line}" substring="SNAPSHOT" />
                                             <then>
-                                                <propertyregex property="snapshot.prop" override="true" input="@{line}" regexp="\s*([a-zA-Z0-9_\-\.:]+)\s*.*" select="\1"/>
+                                                <propertyregex property="snapshot.prop" override="true" input="@{line}" regexp="\s*([a-zA-Z0-9_\-\.:]+)\s*.*" select="\1" />
                                                 <if>
-                                                    <equals arg1="${snapshot.list}" arg2=""/>
+                                                    <equals arg1="${snapshot.list}" arg2="" />
                                                     <then>
-                                                        <var name="snapshot.list" value="${snapshot.prop}"/>
+                                                        <var name="snapshot.list" value="${snapshot.prop}" />
                                                     </then>
                                                     <else>
-                                                        <var name="snapshot.list" value="${snapshot.list},${snapshot.prop}"/>
+                                                        <var name="snapshot.list" value="${snapshot.list},${snapshot.prop}" />
                                                     </else>
                                                 </if>
                                             </then>
